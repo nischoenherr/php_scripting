@@ -43,8 +43,7 @@
     ?>
 
 
-
-    <!-- Count of Characters in txt. Data-->
+    <!-- Count of words in txt. Data-->
     <?php
 
     $read = "archive.org.txt";
@@ -54,8 +53,7 @@
     ?>
 
 
-
-    <!-- Count of Science-->
+    <!-- Count of characters-->
 <?php
 
 $path = "archive.org.txt"; // Data path
