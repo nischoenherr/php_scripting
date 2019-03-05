@@ -1,4 +1,5 @@
 <?php
+
 // head of the programm
 function isVowel($characters) // function to define vowels
 {
@@ -41,8 +42,11 @@ if (is_numeric($string)) {
     exit();
 }
 
+
 // If the User will enter special characters
-if (!preg_match('/^^°-_!§$%&()=?+#/', $string)){
+$string = $argv[1];
+$pattern = '/[^a-zA-Z\\+öäüÖÄÜß]/';
+if (preg_match($pattern, $string)) {
     echo $colors->getColoredString("Special Characters and Whitespaces are not allowed!", "red") . PHP_EOL;
     exit();
 }
