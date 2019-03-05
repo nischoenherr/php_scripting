@@ -1,5 +1,5 @@
 <?php
-
+// head of the programm
 function isVowel($characters) // function to define vowels
 {
     $characters = strtoupper($characters);
@@ -19,16 +19,17 @@ function countVowels($str) // function to count the vowels
     return $count;
 }
 
-
 // Create new Colors class
 $colors = new Color();
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Error handling
 
 // if isset is used to check the script after values
 if (isset($argv[1])) {
     $string = $argv[1];
 }
 
-// Error check
+// Check if input was empty
 if (empty($string)) {
     echo $colors->getColoredString("You need to enter a String!", "red") . PHP_EOL;
     exit();
@@ -40,9 +41,16 @@ if (is_numeric($string)) {
     exit();
 }
 
-// total numbers of vowel
-echo $colors->getColoredString(countVowels($string), "green") . PHP_EOL;
+// If the User will enter special characters
+if (!preg_match('/^^°-_!§$%&()=?+#/', $string)){
+    echo $colors->getColoredString("Special Characters and Whitespaces are not allowed!", "red") . PHP_EOL;
+    exit();
+}
 
+// total numbers of vowel
+echo $colors->getColoredString("The String has " . countVowels($string) . " Vowels", "green") . PHP_EOL;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 class Color // Color class
 {
