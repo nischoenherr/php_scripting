@@ -19,11 +19,34 @@ function countVowels($str) // function to count the vowels
     return $count;
 }
 
-class Color // base class
+
+// Create new Colors class
+$colors = new Color();
+
+// if isset is used to check the script after values
+if (isset($argv[1])) {
+    $string = $argv[1];
+}
+
+// Error check
+if (empty($string)) {
+    echo $colors->getColoredString("You need to enter a String!", "red") . PHP_EOL;
+    exit();
+}
+
+// If the User will enter a number
+if (is_numeric($string)) {
+    echo $colors->getColoredString("Numbers are not allowed!", "red") . PHP_EOL;
+    exit();
+}
+
+// total numbers of vowel
+echo $colors->getColoredString(countVowels($string), "green") . PHP_EOL;
+
+
+class Color // Color class
 {
     private $foreground_colors = array();
-
-    private $background_colors = array();
 
     public function __construct()
     {
@@ -56,27 +79,3 @@ class Color // base class
         return array_keys($this->foreground_colors);
     }
 }
-
-// Create new Colors class
-$colors = new Colors();
-
-
-// if isset is used to check the script after values
-if (isset($argv[1])) {
-    $string = $argv[1];
-}
-
-// Error check
-if (empty($string)) {
-    echo 'You need to enter a String!' . PHP_EOL;
-    exit();
-}
-
-// If the User will enter a number
-if (is_numeric($string)) {
-    echo 'Numbers are not allowed!'. PHP_EOL;
-    exit();
-}
-
-// total numbers of vowel
-echo countVowels($string) . PHP_EOL;
