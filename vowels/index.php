@@ -53,9 +53,7 @@ if (preg_match($pattern, $string)) {
 
 // total numbers of vowel
 echo $colors->getColoredString("The String has " . countVowels($string) . " Vowels", "green") . PHP_EOL;
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 class Color // Color class
 {
     private $foreground_colors = array();
