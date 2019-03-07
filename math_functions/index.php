@@ -26,11 +26,6 @@
             background: lightgrey;
             padding: 5px 15px;
         }
-
-        table tbody td {
-            border: 1px solid black;
-            padding: 15px;
-        }
     </style>
 
     <title> Complex Mathematical Functions </title>
@@ -52,7 +47,7 @@
     // Error handling from header in 'submit.php'
     $errors = [
         'invalidInput'      => 'Please enter a number!',
-        'invalidCharacters' => 'Dont use special Characters!'
+        'invalidCharacters' => 'Dont use special Characters or letters!'
     ];
 
     // Check if the message was set in header
@@ -60,33 +55,36 @@
         echo '<p><b>' . '<font color="red">' . $errors[$_REQUEST['message']] . '</p></b>';
     }
 
-    if (!empty($_REQUEST['result'])) {
+    $factorial = '';
+    $exponential = '';
+    $fibonacci = '';
+    $pi = '';
 
-    $tabledata = array();
-    $input_value = 0;
+    echo '<table><thead><tr>';
+
+    if (!empty($_REQUEST['factorial'])) { // output of Factorial
+        $factorial = $_REQUEST['factorial'];
+        echo '<td><i><b><font color="green">' . 'Factorial: ' . $factorial . '</font></i></td>';
+    }
+
+    if (!empty($_REQUEST['exponential'])) { // output of Exponential
+        $exponential = $_REQUEST['exponential'];
+        echo '<td><i><b><font color="blue">' . 'Exponential: ' . $exponential . '</font></i></td>';
+    }
+
+    if (!empty($_REQUEST['fibonacci'])) { // output of Fibonacci
+        $fibonacci = $_REQUEST['fibonacci'];
+        echo '<td><i><b><font color="purple">' . 'Fibonacci: ' . $fibonacci . '<br></font></i></td>';
+    }
+
+    if (!empty($_REQUEST['pi'])) { // output of Pi
+        $pi = $_REQUEST['pi'];
+        echo '<td><i><b><font color="red">' . 'Pi: ' . $pi . '<br></font></i></td>';
+    }
 
     ?>
 
-    <!--Structure of table (creation)-->
-
-    <table>
-        <thead>
-        <tr>
-            <?php foreach ($tabledata as $key => $value) {
-                echo '<td>' . $key . '</td>';
-            } ?>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <?php foreach ($tabledata as $key => $value) {
-                echo '<td>' . $value . '</td>';
-            }
-            } ?>
-        </tr>
-        </tbody>
-    </table>
-
+    </thead>
 </div>
 </body>
 </html>

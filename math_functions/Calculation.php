@@ -27,7 +27,7 @@ class Calculation
             $fibonacci_calc[] = array_sum($calc_array); // connect array back to Variable
         }
         $result = array_slice($fibonacci_calc, -2, 1); // Output of array.
-        return $result[0]; // output
+        return $result[0];
     }
 
 
