@@ -62,17 +62,13 @@ class Colors // base class
     }
 }
 
-?>
-
-<?php
-
 // Create new Colors class
 $colors = new Colors();
+
 
 // print some strings with colors
 echo $colors->getColoredString("Praise The Sun.", "yellow", "red") . PHP_EOL;
 echo $colors->getColoredString("Eines Tages, hab ich meinen Maserati.", "black", "cyan") . PHP_EOL;
 echo $colors->getColoredString("Ich sitze tief in einem Ferrari.", "red", "light_gray") . PHP_EOL;
+echo $colors->getColoredString("War, war never changes!.", "red", "green") . PHP_EOL;
 
-
-?>
