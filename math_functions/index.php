@@ -79,7 +79,7 @@
 
     if (!empty($_REQUEST['pi'])) { // output of Pi
         $pi = $_REQUEST['pi'];
-        echo '<td><i><b><font color="red">' . 'Pi: ' . $pi . '<br></font></i></td>';
+        echo '<td><i><b><font color="red">' . 'Pi position: ' . $pi . '<br></font></i></td>';
     }
 
     ?>

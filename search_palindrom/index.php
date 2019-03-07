@@ -39,8 +39,6 @@ class Coloring // Color class
     }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// main programm
 
 $string = ''; // empty string variable
 
@@ -61,28 +59,38 @@ if (is_numeric($string)) {
     exit();
 }
 
-// If the User will enter special characters
-if (!preg_match('/^^°-!§$%&()=?+#/', $string)){
-    echo $colors->getColoredString("Special Characters and Whitespaces are not allowed!", "red") . PHP_EOL;
-    exit();
-}
-
 
 // Check if entered length is correct
 $length = strlen($string);
 
 if (3 > $length) { // if length is small then 3 give out the echo and exit the Script
-    echo 'Correct length' . PHP_EOL;
+    echo $colors->getColoredString('Input ' . $string . ' is to short. A palindrome must have at least three characters!',
+            'red') . PHP_EOL;
     exit();
+}
+
+$length--;
+
+for ($i = 0; $i <= $length; $i++) {
+    $firstcharacter = $string[$i];
+    $lastcharacter = $string[$length - $i];
+
+
+    if ($firstcharacter !== $lastcharacter) {
+        echo $colors->getColoredString($string . ' is not a palindrome!', 'red') . PHP_EOL;
+        exit();
+    }
 }
 
 $checkstr = str_replace(' ', '', $string); // replace all spaces
 $checkstr = strtolower($checkstr); // make string lowercase
 $checkstr = strrev($checkstr); // will turn the string
 
-if ($checkstr === $string){ // check the string and give it out
-    echo 'Palindrome found' . PHP_EOL;
-} else {
-    echo 'Palindrome not found' . PHP_EOL;
+
+if ($checkstr === $string) { // check the string and give it out
+    echo $colors->getColoredString('Palindrome found', 'green') . PHP_EOL;
+}
+else {
+    echo $colors->getColoredString($string . ' is not a palindrome!', 'red') . PHP_EOL;
 }
 exit();
