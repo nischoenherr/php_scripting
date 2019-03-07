@@ -1,5 +1,7 @@
 <?php
 
+$print = new Printering();
+
 // define variables
 $length = 10;
 $passwords = 5;
@@ -36,7 +38,7 @@ foreach ($argv as $key => $value) { // loop
 // variables with an array init
 $_validCharacters = array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
 
-$_validConsonant = array('b', 'c',  'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 'ß', 't', 'v', 'w', 'x', 'z');
+$_validConsonant = array('b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 'ß', 't', 'v', 'w', 'x', 'z');
 $_validVocals = array('a', 'ä', 'e', 'i', 'o', 'ö', 'u', 'ü', 'y');
 
 $_validNumbers = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 0);
@@ -80,20 +82,20 @@ if (true === $special) {
 
 // If empty
 if (empty($length && $numbers && $special && $characters && $passwords)) {
-    echo "Error! You need to set the Values!" . PHP_EOL;
+    echo $print->getColoredString('Error! You need to set the Values!', 'red') . PHP_EOL;
     exit();
 }
 
 // If password is to short
 switch ($length) {
     case 0:
-        echo "Error! The password must have at least 1 Character!" . PHP_EOL;
+        echo $print->getColoredString('Error! The password must have at least 1 Character!', 'red') . PHP_EOL;
         exit();
 }
 
 // If no password was entered
 if ($passwords < 1) {
-    echo "Error! You need to generate at least one password!" . PHP_EOL;
+    echo $print->getColoredString('Error! You need to generate at least one password!', 'red') . PHP_EOL;
     exit();
 }
 
@@ -116,5 +118,42 @@ for ($j = 0; $j < $passwords; ++$j) { // loop for generating
         $newPassword .= $tmpCharacter; // generating in variable
     }
 
-    echo $newPassword . PHP_EOL; // output
+    echo $print->getColoredString('Youre Password:  ' . $newPassword , 'green') . PHP_EOL; // output
+}
+
+
+class Printering // Color class
+{
+    private $foreground_colors = array();
+
+    public function __construct()
+    {
+        // Set up shell colors
+        $this->foreground_colors['green'] = '0;32';
+        $this->foreground_colors['light_green'] = '1;32';
+        $this->foreground_colors['red'] = '0;31';
+        $this->foreground_colors['light_red'] = '1;31';
+    }
+
+    // Returns colored string
+    public function getColoredString($string, $foreground_color = null)
+    {
+        $colored_string = "";
+
+        // Check if given foreground color found
+        if (isset($this->foreground_colors[$foreground_color])) {
+            $colored_string .= "\033[" . $this->foreground_colors[$foreground_color] . "m";
+        }
+
+        // Add string and end coloring
+        $colored_string .= $string . "\033[0m";
+
+        return $colored_string;
+    }
+
+    // Returns all foreground color names
+    public function getForegroundColors()
+    {
+        return array_keys($this->foreground_colors);
+    }
 }
